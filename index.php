@@ -1,20 +1,21 @@
 <?php
+/* 
+L'e-commerce vende prodotti per animali.
+I prodotti sono categorizzati, le categorie sono Cani o Gatti.
+I prodotti saranno oltre al cibo, anche giochi, cucce, etc.
 
+Stampiamo delle card contenenti i dettagli dei prodotti, come immagine, titolo, prezzo, icona della categoria ed il tipo di articolo che si sta visualizzando (prodotto, cibo, gioco, cuccia).
+*/
 
-class Product
-{
-    public $name;
-    public $price;
-    public $description;
+require __DIR__ . "/Models/Product.php";
+require __DIR__ . "/Models/Category.php";
 
+$products = [
 
-    public function __construct(String $name, String $price, String $description)
-    {
-        $this->name = $name;
-        $this->price = $price;
-        $this->description = $description;
-    }
-}
+    $dogFood = new Product('https://www.bauzaar.it/media/catalog/product/0/_/0._-_2021-07-06t151328.591.png?width=700&height=700&store=default&image-type=image', 'Almo Nature', 40, 'L\'alimento secco completo per il mantenimento dei cani adulti', 'Dog'),
+    $gameCat = new Product('https://www.aquazoomaniashop.it/16207-large_default/camon-tiragraffi-a-3-basi-con-tunnel.jpg', 'Scratching post', 80, 'Il prodotto ideale per proteggere i tuoi articoli d’arredamento dalle unghie del tuo gatto', 'Cat'),
+    // $catFood = new Product()
+];
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +30,23 @@ class Product
 </head>
 
 <body>
-
+    <div class="container">
+        <div class="row">
+            <?php foreach ($products as $item) { ?>
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="img-fluid" src="<?php echo $item->img ?>" alt="">
+                            <p>Name: <?php echo $item->name ?> </p>
+                            <p>Price: <?php echo $item->price ?> </p>
+                            <p>Description:<?php echo $item->description ?></p>
+                            <p>Category: <?php echo $item->category ?> </p>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
 </body>
 
 </html>
